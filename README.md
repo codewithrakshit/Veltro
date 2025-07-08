@@ -4,14 +4,6 @@ VELTRO is a modern, high-performance luxury shoe e-commerce platform built with 
 
 ---
 
-## 🌐 Live Preview
-
-👉 [Preview VELTRO Website](https://preview--veltro-pulse-forge.lovable.app/)
-
----
-
-## 🚀 Features
-
 ### ✨ Design
 - **Glassy Navbar** with backdrop blur, drop shadow, and hover micro-interactions
 - Premium, geometric typography using fonts like `Unbounded` and `Inter`
@@ -39,7 +31,6 @@ VELTRO is a modern, high-performance luxury shoe e-commerce platform built with 
 
 ## 📦 Tech Stack
 
-- **No-Code Platform**: [Lovable.app](https://lovable.app/)
 - **Visual Style**: Glassmorphism, Neumorphism, Motion UI
 - **Fonts**: `Unbounded`, `Space Grotesk`, `Inter`
 - **Color Palette**:
@@ -83,8 +74,7 @@ VELTRO is inspired by luxury techwear, modern motion design, and user-first digi
 ## 📨 Contact
 
 If you’d like to contribute, customize, or get help with the next evolution of VELTRO, reach out to:
-
-📧 support@veltro.com  
+ 
 🌐 www.veltro.com *(Coming Soon)*
 
 ---
