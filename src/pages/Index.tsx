@@ -1,161 +1,142 @@
-
 import { useState, useEffect } from 'react';
-import { ChevronRight, Star, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ChevronRight, Star, ArrowRight, Instagram, Twitter, Facebook, Play, Zap, Leaf, Heart, ArrowDown, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { products, collections } from '@/data/products';
-import { CartSidebar } from '@/components/CartSidebar';
+import { Link } from 'react-router-dom';
+import { products } from '@/data/products';
+import { useCart } from '@/contexts/CartContext';
 
 const Index = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const { addToCart } = useCart();
   
-  // Get featured products (top-rated and new arrivals)
-  const featuredProducts = products
-    .filter(product => product.rating >= 4.8 || product.isNew)
-    .slice(0, 8);
+  const featuredProducts = products.filter(p => p.category === 'Urban Edge').slice(0, 4);
+  const topProducts = products.slice(0, 8);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % featuredProducts.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [featuredProducts.length]);
 
-  const topSellingProducts = products
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 6);
+  const collections = [
+    {
+      name: "Urban Edge",
+      tagline: "Streetwear-forward silhouettes with bold soles",
+      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=600&fit=crop",
+      products: products.filter(p => p.category === 'Urban Edge').length
+    },
+    {
+      name: "Performance Prime",
+      tagline: "Running-inspired, tech knit uppers",
+      image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=600&fit=crop",
+      products: products.filter(p => p.category === 'Performance Prime').length
+    },
+    {
+      name: "Monochrome Series",
+      tagline: "Clean all-white and all-black designs",
+      image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=600&fit=crop",
+      products: products.filter(p => p.category === 'Monochrome Series').length
+    }
+  ];
 
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      const elements = document.querySelectorAll('.luxury-scroll-reveal');
-      elements.forEach(element => {
-        const rect = element.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.8) {
-          element.classList.add('is-visible');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  
   return (
-    <div className="min-h-screen bg-luxury-background">
-      {/* Premium Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden luxury-hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-br from-luxury-background via-luxury-background/80 to-luxury-primary/5"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1920&h=1080&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-10"></div>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-luxury-accent/20 via-luxury-background to-luxury-primary/10"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-20"></div>
         
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4 animate-luxury-fade-in">
-          <h1 className="luxury-hero-title text-luxury-accent mb-8 brand-text">
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+          <h1 className="hero-title text-6xl md:text-8xl font-bold mb-6 animate-fade-in">
             Step Into the Future
           </h1>
-          <p className="text-3xl md:text-4xl mb-12 font-light text-luxury-muted tracking-wide">
+          <p className="hero-subtitle text-xl md:text-2xl text-luxury-muted mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             Luxury performance footwear engineered for movement
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <Button 
               onClick={scrollToProducts}
-              className="btn-luxury-primary text-lg px-12 py-6 rounded-xl group"
+              className="btn-luxury-primary text-lg px-8 py-6 rounded-xl group"
             >
               Shop Now
-              <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowDown className="w-5 h-5 ml-2 group-hover:translate-y-1 transition-transform" />
             </Button>
-            <Link to="/collections">
-              <Button
-                variant="outline"
-                className="btn-luxury-secondary text-lg px-12 py-6 rounded-xl"
-              >
-                Explore Collections
-              </Button>
-            </Link>
+            <Button 
+              variant="outline" 
+              className="btn-luxury-secondary text-lg px-8 py-6 rounded-xl"
+            >
+              <Play className="w-5 h-5 mr-2" />
+              Watch Story
+            </Button>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-1 h-16 bg-luxury-primary/50 rounded-full"></div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronRight className="w-6 h-6 text-luxury-muted rotate-90" />
         </div>
       </section>
 
-      {/* Product Highlights Section */}
-      <section id="products" className="py-24 bg-luxury-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="luxury-section-title text-center mb-4 text-luxury-accent luxury-scroll-reveal">
-            Top Sellers
-          </h2>
-          <p className="text-center text-xl text-luxury-muted mb-16 luxury-scroll-reveal">
-            The most coveted styles in our collection
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {topSellingProducts.map((product, index) => (
-              <Card
-                key={product.id}
-                className="group luxury-card-hover glass-card border-0 cursor-pointer luxury-scroll-reveal"
+      {/* Product Highlights */}
+      <section id="products" className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="luxury-section-title text-4xl md:text-5xl font-bold mb-4">
+              Top Performers
+            </h2>
+            <p className="text-luxury-muted text-lg max-w-2xl mx-auto">
+              Discover our most loved designs, engineered for those who demand excellence
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {topProducts.map((product, index) => (
+              <div 
+                key={product.id} 
+                className="luxury-product-card group cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="p-0 relative">
-                  <Link to={`/product/${product.id}`}>
-                    <div className="relative overflow-hidden rounded-t-xl">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="luxury-card-overlay rounded-t-xl">
-                        <Button className="bg-luxury-primary/90 text-luxury-surface hover:bg-luxury-primary rounded-lg px-8 py-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                          Quick View
-                        </Button>
-                      </div>
-                      <Badge className="absolute top-6 left-6 bg-luxury-primary/90 text-luxury-surface rounded-lg px-4 py-2">
-                        {product.collection}
-                      </Badge>
-                      {product.isNew && (
-                        <Badge className="absolute top-6 right-6 bg-luxury-secondary/90 text-luxury-accent rounded-lg px-4 py-2 animate-luxury-scale">
-                          NEW
-                        </Badge>
-                      )}
+                <div className="relative overflow-hidden rounded-2xl bg-white mb-4">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <Button 
+                      onClick={() => addToCart(product, product.colors[0], product.sizes[0])}
+                      className="btn-luxury-primary transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                    >
+                      Quick Add
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <h3 className="luxury-product-title font-semibold text-luxury-accent">{product.name}</h3>
+                  <p className="text-luxury-muted text-sm">{product.category}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="luxury-price font-bold text-luxury-accent">${product.price}</span>
+                    <div className="flex items-center space-x-1">
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm text-luxury-muted">{product.rating}</span>
                     </div>
-                    <div className="p-8">
-                      <h3 className="luxury-product-title text-luxury-accent mb-2">{product.name}</h3>
-                      <p className="text-sm text-luxury-muted mb-4">{product.colorway}</p>
-                      <div className="flex items-center mb-6">
-                        <div className="flex text-yellow-500">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-5 h-5 fill-current" />
-                          ))}
-                        </div>
-                        <span className="text-sm text-luxury-muted ml-2">({product.rating})</span>
-                      </div>
-                      <p className="text-3xl font-bold text-luxury-accent mb-6">${product.price}</p>
-                      <div className="flex space-x-2">
-                        {product.colors.slice(0, 3).map((color) => (
-                          <div
-                            key={color}
-                            className="w-8 h-8 rounded-full border-2 border-luxury-border shadow-sm"
-                            style={{ backgroundColor: color.toLowerCase() }}
-                          ></div>
-                        ))}
-                        {product.colors.length > 3 && (
-                          <div className="w-8 h-8 rounded-full border-2 border-luxury-border bg-luxury-muted flex items-center justify-center">
-                            <span className="text-xs text-luxury-surface">+{product.colors.length - 3}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </Link>
-                </CardContent>
-              </Card>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="text-center mt-16 luxury-scroll-reveal">
+          <div className="text-center mt-12">
             <Link to="/shop">
-              <Button className="btn-luxury-primary text-lg px-10 py-6 rounded-xl">
+              <Button className="btn-luxury-secondary text-lg px-8 py-4 rounded-xl">
                 View All Products
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
           </div>
@@ -163,159 +144,157 @@ const Index = () => {
       </section>
 
       {/* Featured Collections */}
-      <section className="py-24 bg-luxury-surface/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 luxury-scroll-reveal">
-            <h2 className="luxury-section-title text-luxury-accent mb-4">
+      <section className="py-24 px-4 bg-luxury-surface/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="luxury-section-title text-4xl md:text-5xl font-bold mb-4">
               Featured Collections
             </h2>
-            <p className="text-xl text-luxury-muted">
-              Discover styles that define movement
+            <p className="text-luxury-muted text-lg max-w-2xl mx-auto">
+              Curated lines that define modern performance and style
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {collections.slice(0, 3).map((collection, index) => (
-              <Card
-                key={collection.id}
-                className="group luxury-card-hover glass-card border-0 overflow-hidden luxury-scroll-reveal"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {collections.map((collection, index) => (
+              <div 
+                key={collection.name} 
+                className="luxury-collection-card group cursor-pointer"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <CardContent className="p-0 relative">
-                  <Link to="/collections">
-                    <div className="relative h-80 overflow-hidden">
-                      <img
-                        src={collection.image}
-                        alt={collection.name}
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                      <div className="absolute inset-0 luxury-card-overlay bg-luxury-primary/20">
-                        <div className="flex items-center justify-center h-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-8 group-hover:translate-y-0">
-                          <Button className="bg-luxury-surface/90 text-luxury-accent hover:bg-luxury-surface rounded-xl px-8 py-4 font-semibold tracking-wider">
-                            Explore Collection
-                            <ArrowRight className="ml-2 w-5 h-5" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                      <h3 className="text-2xl font-bold mb-2 brand-text">{collection.name}</h3>
-                      <p className="text-lg mb-2 opacity-90">{collection.tagline}</p>
-                      <p className="text-sm opacity-75">{collection.description}</p>
-                    </div>
-                  </Link>
-                </CardContent>
-              </Card>
+                <div className="relative overflow-hidden rounded-2xl h-80 mb-6">
+                  <img 
+                    src={collection.image} 
+                    alt={collection.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-white font-bold text-2xl mb-2">{collection.name}</h3>
+                    <p className="text-white/80 text-sm mb-4">{collection.tagline}</p>
+                    <p className="text-white/60 text-xs">{collection.products} products</p>
+                  </div>
+                </div>
+                
+                <Link to="/collections">
+                  <Button className="w-full btn-luxury-secondary rounded-xl">
+                    Shop Collection
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why VELTRO Section */}
-      <section className="py-24 bg-luxury-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 luxury-scroll-reveal">
-            <h2 className="luxury-section-title text-luxury-accent mb-4">
+      {/* Why VELTRO */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="luxury-section-title text-4xl md:text-5xl font-bold mb-4">
               Why VELTRO
             </h2>
-            <p className="text-xl text-luxury-muted">
-              Performance luxury redefined
+            <p className="text-luxury-muted text-lg max-w-2xl mx-auto">
+              Three pillars that define our commitment to excellence
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              {
-                title: "Engineered Comfort",
-                description: "Advanced cushioning and ergonomic design work with your body's natural movement patterns.",
-                icon: "⚡"
-              },
-              {
-                title: "Design-Driven",
-                description: "Fashion-forward aesthetics meet functional innovation in every silhouette.",
-                icon: "✨"
-              },
-              {
-                title: "Sustainably Made",
-                description: "Conscious materials and responsible manufacturing for the future of footwear.",
-                icon: "🌱"
-              }
-            ].map((feature, index) => (
-              <Card
-                key={index}
-                className="glass-card border-0 text-center luxury-scroll-reveal hover:shadow-luxury-hover transition-all duration-500"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <CardContent className="p-8">
-                  <div className="text-5xl mb-6">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-luxury-accent mb-4">{feature.title}</h3>
-                  <p className="text-luxury-muted leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            <div className="text-center space-y-6 luxury-feature-card">
+              <div className="w-16 h-16 bg-luxury-primary/10 rounded-2xl flex items-center justify-center mx-auto">
+                <Zap className="w-8 h-8 text-luxury-primary" />
+              </div>
+              <h3 className="text-2xl font-bold text-luxury-accent">Engineered Comfort</h3>
+              <p className="text-luxury-muted leading-relaxed">
+                Advanced cushioning technology meets responsive design for all-day comfort that adapts to your movement.
+              </p>
+            </div>
+
+            <div className="text-center space-y-6 luxury-feature-card">
+              <div className="w-16 h-16 bg-luxury-primary/10 rounded-2xl flex items-center justify-center mx-auto">
+                <Heart className="w-8 h-8 text-luxury-primary" />
+              </div>
+              <h3 className="text-2xl font-bold text-luxury-accent">Design-Driven</h3>
+              <p className="text-luxury-muted leading-relaxed">
+                Every silhouette is crafted with attention to detail, balancing aesthetic appeal with functional performance.
+              </p>
+            </div>
+
+            <div className="text-center space-y-6 luxury-feature-card">
+              <div className="w-16 h-16 bg-luxury-primary/10 rounded-2xl flex items-center justify-center mx-auto">
+                <Leaf className="w-8 h-8 text-luxury-primary" />
+              </div>
+              <h3 className="text-2xl font-bold text-luxury-accent">Sustainably Made</h3>
+              <p className="text-luxury-muted leading-relaxed">
+                Responsibly sourced materials and eco-conscious manufacturing for footwear that's kind to the planet.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Instagram Preview */}
-      <section className="py-24 bg-luxury-surface/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 luxury-scroll-reveal">
-            <h2 className="luxury-section-title text-luxury-accent mb-4">
-              #VELTROMOVEMENT
+      <section className="py-24 px-4 bg-luxury-surface/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="luxury-section-title text-4xl md:text-5xl font-bold mb-4">
+              @veltro_official
             </h2>
-            <p className="text-xl text-luxury-muted">
-              Join the community that's always moving forward
+            <p className="text-luxury-muted text-lg max-w-2xl mx-auto">
+              See how our community styles VELTRO
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Array.from({ length: 8 }, (_, index) => (
-              <div
-                key={index}
-                className="aspect-square overflow-hidden rounded-xl luxury-scroll-reveal hover:scale-105 transition-transform duration-500 cursor-pointer"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <img
-                  src={`https://images.unsplash.com/photo-${1549298916 + index * 123456}-b41d501d3772?w=400&h=400&fit=crop`}
-                  alt={`VELTRO community ${index + 1}`}
-                  className="w-full h-full object-cover"
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+              <div key={i} className="aspect-square bg-luxury-surface rounded-xl overflow-hidden group cursor-pointer">
+                <img 
+                  src={`https://images.unsplash.com/photo-${1540000000000 + i}?w=400&h=400&fit=crop`}
+                  alt={`Instagram post ${i}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <Instagram className="w-8 h-8 text-white" />
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button className="btn-luxury-secondary text-lg px-8 py-4 rounded-xl">
+              <Instagram className="w-5 h-5 mr-2" />
+              Follow @veltro_official
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-24 bg-luxury-background luxury-scroll-reveal">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Card className="glass-card border-0">
-            <CardContent className="p-12">
-              <h2 className="text-3xl font-bold text-luxury-accent mb-4">
-                Stay In Motion
-              </h2>
-              <p className="text-xl text-luxury-muted mb-8">
-                Be the first to know about new drops, exclusive access, and movement insights.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 border border-luxury-border rounded-xl focus:outline-none focus:border-luxury-primary transition-colors duration-300 bg-luxury-surface"
-                />
-                <Button className="btn-luxury-primary px-8 py-4 rounded-xl">
-                  Join Now
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+      {/* Newsletter */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="glass-card p-12 rounded-3xl">
+            <h2 className="luxury-section-title text-4xl md:text-5xl font-bold mb-4">
+              Stay Ahead
+            </h2>
+            <p className="text-luxury-muted text-lg mb-8 max-w-2xl mx-auto">
+              Be the first to know about new drops, exclusive releases, and member-only events
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+              <input 
+                type="email" 
+                placeholder="Enter your email"
+                className="flex-1 px-6 py-4 rounded-xl border border-luxury-border bg-luxury-surface/50 focus:outline-none focus:ring-2 focus:ring-luxury-primary/50 transition-all duration-300"
+              />
+              <Button className="btn-luxury-primary px-8 py-4 rounded-xl">
+                Subscribe
+                <CheckCircle className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
-
-      <CartSidebar />
     </div>
   );
 };

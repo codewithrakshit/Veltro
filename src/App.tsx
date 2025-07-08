@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { CartProvider } from "./contexts/CartContext";
+import { CartSidebar } from "./components/CartSidebar";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
+            <CartSidebar />
           </div>
         </BrowserRouter>
       </CartProvider>
