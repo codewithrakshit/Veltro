@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { ChevronRight, Star, ArrowRight, Instagram, Twitter, Facebook, Play, Zap, Leaf, Heart, ArrowDown, CheckCircle } from 'lucide-react';
+import { ChevronRight, Star, ArrowRight, Play, Zap, Leaf, Heart, ArrowDown, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { products } from '@/data/products';
@@ -50,7 +51,6 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-luxury-accent/20 via-luxury-background to-luxury-primary/10"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-20"></div>
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="hero-title text-6xl md:text-8xl font-bold mb-6 animate-fade-in">
@@ -230,42 +230,6 @@ const Index = () => {
                 Responsibly sourced materials and eco-conscious manufacturing for footwear that's kind to the planet.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Instagram Preview */}
-      <section className="py-24 px-4 bg-luxury-surface/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="luxury-section-title text-4xl md:text-5xl font-bold mb-4">
-              @veltro_official
-            </h2>
-            <p className="text-luxury-muted text-lg max-w-2xl mx-auto">
-              See how our community styles VELTRO
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="aspect-square bg-luxury-surface rounded-xl overflow-hidden group cursor-pointer">
-                <img 
-                  src={`https://images.unsplash.com/photo-${1540000000000 + i}?w=400&h=400&fit=crop`}
-                  alt={`Instagram post ${i}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Instagram className="w-8 h-8 text-white" />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button className="btn-luxury-secondary text-lg px-8 py-4 rounded-xl">
-              <Instagram className="w-5 h-5 mr-2" />
-              Follow @veltro_official
-            </Button>
           </div>
         </div>
       </section>
