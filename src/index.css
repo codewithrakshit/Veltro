@@ -3,91 +3,98 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Import Premium Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Unbounded:wght@300;400;500;600;700&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Premium Luxury Performance Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 7%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 214 84% 33%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 214 84% 33%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 214 84% 33%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 214 84% 33%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 214 84% 33%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 214 84% 33%;
+
+    /* Luxury Brand Colors */
+    --luxury-background: 0 0% 98%;
+    --luxury-surface: 0 0% 100%;
+    --luxury-primary: 214 84% 33%;
+    --luxury-secondary: 30 35% 65%;
+    --luxury-accent: 0 0% 7%;
+    --luxury-muted: 0 0% 60%;
+    --luxury-border: 0 0% 85%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 214 84% 50%;
+    --primary-foreground: 0 0% 7%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 214 84% 50%;
+    --accent-foreground: 0 0% 7%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 31%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 214 84% 50%;
+
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 214 84% 50%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 214 84% 50%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 214 84% 50%;
   }
 }
 
@@ -99,18 +106,59 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    background-color: hsl(var(--luxury-background));
   }
 
   h1, h2, h3 {
     font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .brand-text {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  button {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
   }
 }
 
-/* Custom animations */
-@keyframes fade-in {
+/* Premium Glassmorphism Effects */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.glass-modal {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Premium Animations */
+@keyframes luxuryFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -118,130 +166,235 @@ All colors MUST be HSL.
   }
 }
 
-@keyframes slide-in-right {
+@keyframes luxurySlideIn {
   from {
-    transform: translateX(100%);
+    opacity: 0;
+    transform: translateX(50px);
   }
   to {
+    opacity: 1;
     transform: translateX(0);
   }
 }
 
-@keyframes pulse-slow {
-  0%, 100% {
+@keyframes luxuryScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
     opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes luxuryGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(30, 58, 138, 0.3);
   }
   50% {
-    opacity: 0.5;
+    box-shadow: 0 0 30px rgba(30, 58, 138, 0.6);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+.animate-luxury-fade-in {
+  animation: luxuryFadeIn 0.8s ease-out forwards;
 }
 
-.animate-on-scroll {
+.animate-luxury-slide-in {
+  animation: luxurySlideIn 0.6s ease-out forwards;
+}
+
+.animate-luxury-scale {
+  animation: luxuryScale 0.4s ease-out forwards;
+}
+
+.animate-luxury-glow {
+  animation: luxuryGlow 2s ease-in-out infinite;
+}
+
+/* Premium Button Styles */
+.btn-luxury-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 font-semibold tracking-wider transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+  background: linear-gradient(135deg, hsl(var(--luxury-primary)), hsl(var(--luxury-primary)) 100%);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.25);
+}
+
+.btn-luxury-primary:hover {
+  box-shadow: 0 6px 30px rgba(30, 58, 138, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-luxury-secondary {
+  @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 font-semibold tracking-wider transition-all duration-300 transform hover:scale-105;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+.btn-luxury-secondary:hover {
+  box-shadow: 0 6px 30px rgba(30, 58, 138, 0.2);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Premium Card Hover Effects */
+.luxury-card-hover {
+  @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+  transform-style: preserve-3d;
+}
+
+.luxury-card-hover:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.luxury-card-hover:hover .luxury-card-overlay {
+  opacity: 1;
+  backdrop-filter: blur(8px);
+}
+
+.luxury-card-overlay {
+  @apply absolute inset-0 bg-black/10 opacity-0 transition-all duration-300 flex items-center justify-center;
+  backdrop-filter: blur(0px);
+}
+
+/* Premium Navigation Link Effects */
+.luxury-nav-link {
+  @apply relative inline-block text-gray-700 hover:text-primary transition-colors duration-300;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.luxury-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, hsl(var(--luxury-primary)), hsl(var(--luxury-secondary)));
+  transition: width 0.3s ease;
+}
+
+.luxury-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Premium Hero Section */
+.luxury-hero-gradient {
+  background: linear-gradient(135deg, 
+    hsl(var(--luxury-background)) 0%, 
+    hsl(var(--luxury-surface)) 50%, 
+    rgba(30, 58, 138, 0.05) 100%
+  );
+}
+
+/* Premium Scroll Animations */
+.luxury-scroll-reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.animate-on-scroll.animate-fade-in {
+.luxury-scroll-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Premium Product Grid */
+.luxury-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
 }
 
-/* Custom button styles */
-.btn-primary {
-  @apply bg-black text-white hover:bg-gray-800 px-8 py-4 font-semibold tracking-wide transition-all duration-300 transform hover:scale-105;
+@media (max-width: 768px) {
+  .luxury-product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
 }
 
-.btn-secondary {
-  @apply border-2 border-black text-black hover:bg-black hover:text-white px-8 py-4 font-semibold tracking-wide transition-all duration-300;
+/* Premium Cart Slide Animation */
+.luxury-cart-slide {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Card hover effects */
-.card-hover {
-  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+.luxury-cart-slide.open {
+  transform: translateX(0);
 }
 
-/* Navigation underline effect */
-.nav-link {
-  @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-black after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+/* Premium Loading States */
+.luxury-loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: linear-gradient(90deg, 
+    hsl(var(--luxury-surface)) 0%, 
+    rgba(30, 58, 138, 0.1) 50%, 
+    hsl(var(--luxury-surface)) 100%
+  );
 }
 
-/* Hero section parallax */
-.hero-parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Product image hover effects */
-.product-image {
-  @apply transition-transform duration-500 hover:scale-110;
-}
-
-/* Cart slide animation */
-.cart-slide {
-  animation: slide-in-right 0.3s ease-out;
-}
-
-/* Loading animations */
-.loading-pulse {
-  animation: pulse-slow 2s infinite;
-}
-
-/* Custom scrollbar */
+/* Premium Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: hsl(var(--luxury-background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: linear-gradient(180deg, hsl(var(--luxury-primary)), hsl(var(--luxury-secondary)));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: linear-gradient(180deg, hsl(var(--luxury-primary)), hsl(var(--luxury-primary)));
 }
 
-/* Responsive typography */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-  }
-}
-
-/* Focus states for accessibility */
+/* Premium Focus States */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
-  @apply outline-2 outline-offset-2 outline-black;
+  @apply outline-2 outline-offset-2 outline-primary;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .dark-mode {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+/* Premium Typography Scale */
+.luxury-hero-title {
+  font-size: clamp(3rem, 8vw, 8rem);
+  line-height: 0.9;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.luxury-section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.luxury-product-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Premium Responsive Typography */
+@media (max-width: 768px) {
+  .luxury-hero-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+  
+  .luxury-section-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .luxury-product-title {
+    font-size: 1.25rem;
   }
 }
